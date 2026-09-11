@@ -1,6 +1,6 @@
 import { STRINGS } from "/lang/messages/en/strings";
 
-export class UserInterface
+export class UIController
 {
     constructor(rootElemet)
     {
@@ -8,7 +8,7 @@ export class UserInterface
     }
 
 
-    createStartPrompt()
+    static createStartPrompt()
     {
         const container = document.createElement("div");
         const text = document.createElement("p");
@@ -29,5 +29,13 @@ export class UserInterface
         textField.setAttribute("id", STRINGS.BUTTONTEXT);
 
         return container;
+    }
+
+    static displayButtons(buttonsArray)
+    {
+        for (const button of buttonsArray)
+        {
+
+        }
     }
 }
