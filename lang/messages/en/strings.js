@@ -1,4 +1,4 @@
-export const Strings = {
+export const STRINGS = {
     PROMPT: 'How many buttons to create? (3-7)',
     BUTTONTEXT: 'Go!',
 

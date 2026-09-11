@@ -1,7 +1,7 @@
-import { Strings } from "../lang/messages/en/strings.js";
+import { STRINGS } from "../lang/messages/en/strings.js";
 import { GameButton } from "./GameButton.js";
 
-class AppController
+export class AppController
 {
     gameButtons;
 

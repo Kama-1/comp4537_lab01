@@ -1,14 +1,9 @@
-import { STRINGS } from "/lang/messages/en/strings";
+import { STRINGS } from "../lang/messages/en/strings.js";
+
 
 export class UIController
 {
-    constructor(rootElemet)
-    {
-        this.root = rootElemet;
-    }
-
-
-    static createStartPrompt()
+    static createStartPrompt(buttonCallback)
     {
         const container = document.createElement("div");
         const text = document.createElement("p");
@@ -23,12 +18,18 @@ export class UIController
         text.innerText = STRINGS.PROMPT;
 
         btn.textContent = STRINGS.BUTTONTEXT;
-        btn.setAttribute("onclick", "");
+        btn.addEventListener("click", buttonCallback);
 
         textField.setAttribute("type", "text");
-        textField.setAttribute("id", STRINGS.BUTTONTEXT);
+        textField.setAttribute("id", "userInput");
 
-        return container;
+        document.body.appendChild(container);
+    }
+
+    static deleteStartPrompt()
+    {
+        const container = document.getElementById("startPrompt");
+        document.body.removeChild(container);
     }
 
     static displayButtons(buttonsArray)
