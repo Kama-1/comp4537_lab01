@@ -39,4 +39,17 @@ export class UIController
 
         }
     }
+
+    static displayError()
+    {
+        if (!document.getElementById("invalidInput"))
+        {
+            const errorMessage = document.createElement("p");
+            const container = document.getElementById("startPrompt");
+            errorMessage.innerText = STRINGS.INVALID_INPUT;
+            errorMessage.setAttribute("style", "color: red");
+            errorMessage.setAttribute("id", "invalidInput");
+            container.appendChild(errorMessage);
+        }
+    }
 }
