@@ -34,9 +34,19 @@ export class UIController
 
     static displayButtons(buttonsArray)
     {
+        console.log(`ScreenHeight: ${window.screen.height}\nScreenWidth: ${window.screen.width}`);
         for (const button of buttonsArray)
         {
+            let htmlBtn = document.createElement("button");
+            htmlBtn.innerText = button.number;
+            htmlBtn.setAttribute("style",
+          `
+                    background-color: rgb(${button.red}, ${button.green}, ${button.blue});
+                    top: ${button.y}px;
+                    left: ${button.x}px;
+                `);
 
+            document.body.appendChild(htmlBtn);
         }
     }
 

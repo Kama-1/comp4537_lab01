@@ -2,7 +2,6 @@ import { STRINGS } from "../lang/messages/en/strings.js";
 import { GameButton } from "./GameButton.js";
 import { UIController } from "./UIController.js";
 import { AppController } from "./AppController.js";
-// Dont use this class?
 
 function displayPrompt()
 {
@@ -15,7 +14,8 @@ function displayPrompt()
         if (success)
         {
             UIController.deleteStartPrompt();
-
+            const formattedValue = formatInput(textValue);
+            appController.startGame(formattedValue);
         }
         else
         {
@@ -44,7 +44,23 @@ function validateInput(textValue)
     if (textValue > MAX_VALUE || textValue < MIN_VALUE)
         return false;
 
+    if (textValue % 1 !== 0)
+        return false;
+
     return true;
+}
+
+function formatInput(textValue)
+{
+    const success = validateInput(textValue);
+    if (success)
+    {
+        return Number(textValue.trim());
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 function displayButtons()
@@ -52,4 +68,7 @@ function displayButtons()
     UIController.displayButtons(gameButtons);
 }
 
+
+const appController = new AppController();
 displayPrompt();
+

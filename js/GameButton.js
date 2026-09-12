@@ -1,13 +1,15 @@
 
 export class GameButton
 {
-    constructor(x, y, number, colour)
+    constructor(x, y, number, red, green, blue, enabled)
     {
         this.x = x;
         this.y = y;
         this.number = number;
-        this.colour = colour;
-        this.enabled = false;
+        this.red = red;
+        this.green = green;
+        this.blue = blue;
+        this.enabled = enabled;
     }
 
     shuffleLocation(maxWidth, maxHeight)
@@ -17,7 +19,7 @@ export class GameButton
 
         self.setAttribute("style",
     `
-            color: ${this.colour};
+            background-color: rgb(${this.red},${this.green},${this.blue})};
             top: ${randY}px;
             left: ${randX}px;
         `);
