@@ -34,7 +34,8 @@ export class UIController
 
     static displayButtons(buttonsArray)
     {
-        console.log(`ScreenHeight: ${window.screen.height}\nScreenWidth: ${window.screen.width}`);
+        const container = document.createElement("div");
+
         for (const button of buttonsArray)
         {
             let htmlBtn = document.createElement("button");
@@ -45,9 +46,11 @@ export class UIController
                     top: ${button.y}px;
                     left: ${button.x}px;
                 `);
+            htmlBtn.setAttribute("class", "gameButton");
 
-            document.body.appendChild(htmlBtn);
+            container.appendChild(htmlBtn);
         }
+        document.body.appendChild(container);
     }
 
     static displayError()
@@ -60,6 +63,15 @@ export class UIController
             errorMessage.setAttribute("style", "color: red");
             errorMessage.setAttribute("id", "invalidInput");
             container.appendChild(errorMessage);
+        }
+    }
+
+    static hideButtonNumbers()
+    {
+        const gameButtons = document.getElementsByClassName("gameButton");
+        for (const button of gameButtons)
+        {
+            button.innerHTML = "";
         }
     }
 }

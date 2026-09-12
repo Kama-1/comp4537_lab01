@@ -9,10 +9,31 @@ export class AppController
         this.gameButtons = [];
     }
 
-    startGame(numGameButtons)
+    runGame(numGameButtons)
     {
+        const SECONDS_BETWEEN = 2;
+        const MILLISECOND = 1000;
+
         this.createGameButtons(numGameButtons);
         UIController.displayButtons(this.gameButtons);
+
+
+        setTimeout(() => {
+            this.hideButtonNumbers();
+            this.shuffleButtons();
+        }, numGameButtons*MILLISECOND);
+        // for (let i = 1; i < numGameButtons; i++)
+        // {
+        //     this.countDownToFunction(SECONDS_BETWEEN, this.shuffleButtons);
+        // }
+        this.enableButtons();
+    }
+
+    countDownToFunction(seconds, callback)
+    {
+        setTimeout(() => {
+            callback();
+        }, seconds * 1000);
     }
 
     createGameButtons(numGameButtons)
@@ -41,9 +62,9 @@ export class AppController
         const screenHeight = window.screen.height;
         const screenWidth = window.screen.width;
 
-        for (const button of gameButtons)
+        for (const button of this.gameButtons)
         {
-            button.shuffleLocation();
+            button.shuffleLocation(screenWidth, screenHeight);
         }
     }
 
@@ -61,6 +82,11 @@ export class AppController
         {
             button.enabled = false;
         }
+    }
+
+    hideButtonNumbers()
+    {
+        UIController.hideButtonNumbers();
     }
 
 }

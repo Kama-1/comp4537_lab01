@@ -1,5 +1,3 @@
-import { STRINGS } from "../lang/messages/en/strings.js";
-import { GameButton } from "./GameButton.js";
 import { UIController } from "./UIController.js";
 import { AppController } from "./AppController.js";
 
@@ -15,7 +13,7 @@ function displayPrompt()
         {
             UIController.deleteStartPrompt();
             const formattedValue = formatInput(textValue);
-            appController.startGame(formattedValue);
+            appController.runGame(formattedValue);
         }
         else
         {
@@ -71,4 +69,5 @@ function displayButtons()
 
 const appController = new AppController();
 displayPrompt();
+
 
