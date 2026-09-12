@@ -35,7 +35,6 @@ export class UIController
     static displayButtons(buttonsArray)
     {
         const container = document.createElement("div");
-        container.setAttribute("id", "gameButtons");
 
         for (const button of buttonsArray)
         {
@@ -48,6 +47,7 @@ export class UIController
                     left: ${button.x}px;
                 `);
             htmlBtn.setAttribute("class", "gameButton");
+            htmlBtn.setAttribute("id", `button${button.number}`);
 
             container.appendChild(htmlBtn);
         }
@@ -78,33 +78,19 @@ export class UIController
 
     static shuffleButtonLocations(gameButtons)
     {
-        for (const button of gameButtons)
+        for (let i = 0; i < gameButtons.length; i++)
         {
+            const buttonID = `button${i+1}`;
+            const buttonData = gameButtons[i];
+            const gameButton = document.getElementById(buttonID);
+
             const maxWidth = window.screen.width;
             const maxHeight = window.screen.height;
             const randX = Math.floor(Math.random() * maxWidth);
             const randY = Math.floor(Math.random() * maxHeight);
 
-            button.x = randX;
-            button.y = randY;
+            gameButton.style.left = randX + "px";
+            gameButton.style.top = randY + "px";
         }
-
-        UIController.redrawGameButtons(gameButtons);
-    }
-
-    static removeGameButtons()
-    {
-        const gameButtons = document.getElementsByClassName("gameButton");
-        const container = document.getElementById("gameButtons");
-        for (const button of gameButtons)
-        {
-            container.removeChild(button);
-        }
-    }
-
-    static redrawGameButtons(gameButtons)
-    {
-        UIController.removeGameButtons();
-        UIController.displayButtons(gameButtons);
     }
 }
