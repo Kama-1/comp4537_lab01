@@ -26,7 +26,6 @@ export class AppController
         // {
         //     this.countDownToFunction(SECONDS_BETWEEN, this.shuffleButtons);
         // }
-        this.enableButtons();
     }
 
     countDownToFunction(seconds, callback)
@@ -59,29 +58,7 @@ export class AppController
 
     shuffleButtons()
     {
-        const screenHeight = window.screen.height;
-        const screenWidth = window.screen.width;
-
-        for (const button of this.gameButtons)
-        {
-            button.shuffleLocation(screenWidth, screenHeight);
-        }
-    }
-
-    enableButtons()
-    {
-        for (const button of gameButtons)
-        {
-            button.enabled = true;
-        }
-    }
-
-    disableButtons()
-    {
-        for (const button of gameButtons)
-        {
-            button.enabled = false;
-        }
+        UIController.shuffleButtonLocations(this.gameButtons);
     }
 
     hideButtonNumbers()

@@ -35,6 +35,7 @@ export class UIController
     static displayButtons(buttonsArray)
     {
         const container = document.createElement("div");
+        container.setAttribute("id", "gameButtons");
 
         for (const button of buttonsArray)
         {
@@ -73,5 +74,37 @@ export class UIController
         {
             button.innerHTML = "";
         }
+    }
+
+    static shuffleButtonLocations(gameButtons)
+    {
+        for (const button of gameButtons)
+        {
+            const maxWidth = window.screen.width;
+            const maxHeight = window.screen.height;
+            const randX = Math.floor(Math.random() * maxWidth);
+            const randY = Math.floor(Math.random() * maxHeight);
+
+            button.x = randX;
+            button.y = randY;
+        }
+
+        UIController.redrawGameButtons(gameButtons);
+    }
+
+    static removeGameButtons()
+    {
+        const gameButtons = document.getElementsByClassName("gameButton");
+        const container = document.getElementById("gameButtons");
+        for (const button of gameButtons)
+        {
+            container.removeChild(button);
+        }
+    }
+
+    static redrawGameButtons(gameButtons)
+    {
+        UIController.removeGameButtons();
+        UIController.displayButtons(gameButtons);
     }
 }

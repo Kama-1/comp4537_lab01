@@ -11,19 +11,4 @@ export class GameButton
         this.blue = blue;
         this.enabled = enabled;
     }
-
-    shuffleLocation(maxWidth, maxHeight)
-    {
-        const randX = Math.floor(Math.random() * maxWidth);
-        const randY = Math.floor(Math.random() * maxHeight);
-
-        self.setAttribute("style",
-    `
-            background-color: rgb(${this.red},${this.green},${this.blue})};
-            top: ${randY}px;
-            left: ${randX}px;
-        `);
-    }
-
-
 }
