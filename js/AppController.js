@@ -27,6 +27,8 @@ export class AppController
             this.shuffleButtons();
         }
         this.hideButtonNumbers();
+        this.enableButtons();
+
     }
 
     createGameButtons(numGameButtons)
@@ -57,6 +59,14 @@ export class AppController
     hideButtonNumbers()
     {
         UIController.hideButtonNumbers();
+    }
+
+    enableButtons()
+    {
+        for (const button of this.gameButtons)
+        {
+            UIController.enableButtons();
+        }
     }
 
 }

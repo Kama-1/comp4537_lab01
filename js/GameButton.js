@@ -9,6 +9,5 @@ export class GameButton
         this.red = red;
         this.green = green;
         this.blue = blue;
-        this.enabled = enabled;
     }
 }

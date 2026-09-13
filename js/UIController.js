@@ -3,6 +3,7 @@ import { STRINGS } from "../lang/messages/en/strings.js";
 
 export class UIController
 {
+    static currentButton = 1;
     static createStartPrompt(buttonCallback)
     {
         const container = document.createElement("div");
@@ -48,10 +49,28 @@ export class UIController
                 `);
             htmlBtn.setAttribute("class", "gameButton");
             htmlBtn.setAttribute("id", `button${button.number}`);
+            htmlBtn.addEventListener("click", () => {
+                UIController.checkUserAnswer(htmlBtn);
+            });
+            htmlBtn.disabled = true;
 
             container.appendChild(htmlBtn);
         }
         document.body.appendChild(container);
+    }
+
+    static checkUserAnswer(button)
+    {
+        const delimiter = "button";
+        const buttonID = button.id;
+        console.log(buttonID);
+        const numID = buttonID[6];
+
+        if (numID == UIController.currentButton)
+        {
+            button.innerHTML = numID;
+            UIController.currentButton++;
+        }
     }
 
     static displayError()
@@ -73,6 +92,24 @@ export class UIController
         for (const button of gameButtons)
         {
             button.innerHTML = "";
+        }
+    }
+
+    static enableButtons()
+    {
+        const gameButtons = document.getElementsByClassName("gameButton");
+        for (const button of gameButtons)
+        {
+            button.disabled = false;
+        }
+    }
+
+    static disableButtons()
+    {
+        const gameButtons = document.getElementsByClassName("gameButton");
+        for (const button of gameButtons)
+        {
+            button.disabled = true;
         }
     }
 
