@@ -44,7 +44,7 @@ export class UIController
           `
                     background-color: rgb(${button.red}, ${button.green}, ${button.blue});
                     top: ${button.y}px;
-                    left: ${button.x}px;
+                    left: ${button.x}em;
                 `);
             htmlBtn.setAttribute("class", "gameButton");
             htmlBtn.setAttribute("id", `button${button.number}`);
@@ -78,20 +78,19 @@ export class UIController
 
     static shuffleButtonLocations(gameButtons)
     {
-        console.log(`ScreenWidth: ${window.screen.width}, ScreenHeight: ${window.screen.height}`);
         for (let i = 0; i < gameButtons.length; i++)
         {
             const buttonID = `button${i+1}`;
             const buttonData = gameButtons[i];
             const gameButton = document.getElementById(buttonID);
 
-            const maxWidth = window.screen.width;
-            const maxHeight = window.screen.height;
-            const randX = Math.floor(Math.random() * maxWidth);
-            const randY = Math.floor(Math.random() * maxHeight);
+            const maxWidth = screen.width;
+            const maxHeight = screen.height;
+            const randX = Math.floor(Math.random() * 90);
+            const randY = Math.floor(Math.random() * 90);
 
-            gameButton.style["left"] = randX + "px";
-            gameButton.style["top"] = randY + "px";
+            gameButton.style["left"] = randX + "vw";
+            gameButton.style["top"] = randY + "vh";
         }
     }
 }

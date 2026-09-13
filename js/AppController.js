@@ -23,7 +23,6 @@ export class AppController
         this.shuffleButtons();
         for (let i = 0; i < numGameButtons; i++)
         {
-            console.log(`Shuffle ${i}`);
             await sleep(SECONDS_BETWEEN*MILLISECOND);
             this.shuffleButtons();
         }
@@ -34,12 +33,11 @@ export class AppController
     {
         const MAX_COLOUR = 255;
 
-        const SCREEN_PADDING = Math.floor(window.screen.width / 32);
-        const POSITION_BETWEEN = Math.floor((window.screen.width-SCREEN_PADDING-SCREEN_PADDING)/numGameButtons);
+        const POSITION_BETWEEN = 10;
         const y = Math.floor(window.screen.height/2);
         for (let i = 0; i < numGameButtons; i++)
         {
-            const x = POSITION_BETWEEN*i + SCREEN_PADDING;
+            const x = POSITION_BETWEEN*i
             const number = i + 1;
             const enabled = false;
 
