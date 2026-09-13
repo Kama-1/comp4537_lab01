@@ -78,6 +78,7 @@ export class UIController
 
     static shuffleButtonLocations(gameButtons)
     {
+        console.log(`ScreenWidth: ${window.screen.width}, ScreenHeight: ${window.screen.height}`);
         for (let i = 0; i < gameButtons.length; i++)
         {
             const buttonID = `button${i+1}`;
@@ -89,8 +90,8 @@ export class UIController
             const randX = Math.floor(Math.random() * maxWidth);
             const randY = Math.floor(Math.random() * maxHeight);
 
-            gameButton.style.left = randX + "px";
-            gameButton.style.top = randY + "px";
+            gameButton.style["left"] = randX + "px";
+            gameButton.style["top"] = randY + "px";
         }
     }
 }

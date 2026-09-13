@@ -9,30 +9,25 @@ export class AppController
         this.gameButtons = [];
     }
 
-    runGame(numGameButtons)
+
+    async runGame(numGameButtons)
     {
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
         const SECONDS_BETWEEN = 2;
         const MILLISECOND = 1000;
 
         this.createGameButtons(numGameButtons);
         UIController.displayButtons(this.gameButtons);
 
-
-        setTimeout(() => {
-            this.hideButtonNumbers();
+        await sleep(numGameButtons * MILLISECOND);
+        this.shuffleButtons();
+        for (let i = 0; i < numGameButtons; i++)
+        {
+            console.log(`Shuffle ${i}`);
+            await sleep(SECONDS_BETWEEN*MILLISECOND);
             this.shuffleButtons();
-        }, numGameButtons*MILLISECOND);
-        // for (let i = 1; i < numGameButtons; i++)
-        // {
-        //     this.countDownToFunction(SECONDS_BETWEEN, this.shuffleButtons);
-        // }
-    }
-
-    countDownToFunction(seconds, callback)
-    {
-        setTimeout(() => {
-            callback();
-        }, seconds * 1000);
+        }
+        this.hideButtonNumbers();
     }
 
     createGameButtons(numGameButtons)
