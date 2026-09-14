@@ -69,6 +69,9 @@ export class UIController
         {
             button.innerHTML = numID;
             UIController.currentButton++;
+        }
+        else
+        {
 
         }
     }
