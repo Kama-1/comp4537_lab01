@@ -63,13 +63,13 @@ export class UIController
     {
         const delimiter = "button";
         const buttonID = button.id;
-        console.log(buttonID);
-        const numID = buttonID[6];
+        const numID = buttonID[delimiter.length];
 
         if (numID == UIController.currentButton)
         {
             button.innerHTML = numID;
             UIController.currentButton++;
+
         }
     }
 

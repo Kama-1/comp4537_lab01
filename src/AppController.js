@@ -1,5 +1,5 @@
 import { STRINGS } from "../lang/messages/en/strings.js";
-import { GameButton } from "./GameButton.js";
+import { GameButton } from "./components/GameButton.js";
 import {UIController} from "./UIController.js";
 
 export class AppController
