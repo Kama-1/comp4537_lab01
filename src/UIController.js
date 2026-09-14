@@ -3,8 +3,10 @@ import { STRINGS } from "../lang/messages/en/strings.js";
 
 export class UIController
 {
-    static currentButton = 1;
-    static createStartPrompt(buttonCallback)
+    constructor()
+    {}
+    
+    createStartPrompt(buttonCallback)
     {
         const container = document.createElement("div");
         const text = document.createElement("p");
@@ -27,13 +29,13 @@ export class UIController
         document.body.appendChild(container);
     }
 
-    static deleteStartPrompt()
+    deleteStartPrompt()
     {
         const container = document.getElementById("startPrompt");
         document.body.removeChild(container);
     }
 
-    static displayButtons(buttonsArray)
+    displayButtons(buttonsArray, buttonCallback)
     {
         const container = document.createElement("div");
 
@@ -50,7 +52,7 @@ export class UIController
             htmlBtn.setAttribute("class", "gameButton");
             htmlBtn.setAttribute("id", `button${button.number}`);
             htmlBtn.addEventListener("click", () => {
-                UIController.checkUserAnswer(htmlBtn);
+                buttonCallback(htmlBtn);
             });
             htmlBtn.disabled = true;
 
@@ -59,24 +61,23 @@ export class UIController
         document.body.appendChild(container);
     }
 
-    static checkUserAnswer(button)
+    displayWinGame()
     {
-        const delimiter = "button";
-        const buttonID = button.id;
-        const numID = buttonID[delimiter.length];
-
-        if (numID == UIController.currentButton)
-        {
-            button.innerHTML = numID;
-            UIController.currentButton++;
-        }
-        else
-        {
-
-        }
+        const container = document.getElementById("gameEndText");
+        const text = document.createElement("h1");
+        text.innerText = STRINGS.WIN_TEXT;
+        container.appendChild(text);
     }
 
-    static displayError()
+    displayLoseGame()
+    {
+        const container = document.getElementById("gameEndText");
+        const text = document.createElement("h1");
+        text.innerText = STRINGS.LOSE_TEXT;
+        container.appendChild(text);
+    }
+
+    displayError()
     {
         if (!document.getElementById("invalidInput"))
         {
@@ -89,7 +90,7 @@ export class UIController
         }
     }
 
-    static hideButtonNumbers()
+    hideButtonNumbers()
     {
         const gameButtons = document.getElementsByClassName("gameButton");
         for (const button of gameButtons)
@@ -98,7 +99,7 @@ export class UIController
         }
     }
 
-    static enableButtons()
+    enableButtons()
     {
         const gameButtons = document.getElementsByClassName("gameButton");
         for (const button of gameButtons)
@@ -107,7 +108,7 @@ export class UIController
         }
     }
 
-    static disableButtons()
+    disableButtons()
     {
         const gameButtons = document.getElementsByClassName("gameButton");
         for (const button of gameButtons)
@@ -116,7 +117,7 @@ export class UIController
         }
     }
 
-    static shuffleButtonLocations(gameButtons)
+    shuffleButtonLocations(gameButtons)
     {
         for (let i = 0; i < gameButtons.length; i++)
         {
